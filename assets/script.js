@@ -17,8 +17,25 @@ const slides = [
 	}
 ]
 
-const arrowleft = document.getElementsByClassName(banner_arrow_left);
+const buttons = document.querySelectorAll(".arrow");
+const slide = document.querySelectorAll(".slide");
 
-arrowleft.addEventListener("click", function(e){
-console.log(arrowleft)
+
+buttons.forEach((button) => {
+	button.addEventListener("click", (e) => {
+		const calcNextSlide = e.currentTarget.id === "left" ? -1 : 1;
+		const slideActive = document.querySelector(".active");
+
+		newIndex = calcNextSlide +	[...slide].indexOf(slideActive);
+
+		if (newIndex < 0) {
+			newIndex = [...slide].length - 1;
+		}else if (newIndex >= [...slide].length){
+newIndex = 0;
+		}
+		slide[newIndex].classList.add("active");
+		slideActive.classList.remove("active");
+
+		
+	});
 });
